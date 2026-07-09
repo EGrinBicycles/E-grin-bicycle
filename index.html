@@ -51,15 +51,22 @@
         }
 
         /* --- PROMO BAR --- */
-        .promo-bar {
+        .top-promo-bar {
             background-color: var(--accent-yellow);
             color: var(--text-dark);
             text-align: center;
-            padding: 12px 20px;
-            font-size: 15px;
+            padding: 10px 20px;
             font-weight: 800;
+            font-size: 15px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .top-promo-bar i {
+            margin-right: 8px;
+            color: var(--primary-blue);
         }
 
         /* --- STRATEGIC BRAND PATTERN --- */
@@ -71,23 +78,90 @@
             background-size: 50px 50px;
         }
 
-        /* --- LOGO FOCUS HEADER --- */
+        /* --- LOGO & PHONE HEADER --- */
         .brand-focus-header {
             width: 100%;
-            text-align: center;
-            padding: 50px 20px;
-            border-bottom: 4px solid var(--accent-yellow);
+            padding: 40px 20px;
+            border-bottom: 5px solid var(--accent-yellow);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .brand-focus-header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        .header-content-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
         }
 
         .main-logo-img {
-            max-width: 350px;
+            max-width: 380px;
             height: auto;
-            filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.15));
-            transition: transform 0.3s ease;
+            filter: drop-shadow(0px 12px 20px rgba(0,0,0,0.25));
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .main-logo-img:hover {
-            transform: scale(1.03);
+            transform: scale(1.04) translateY(-3px);
+            filter: drop-shadow(0px 16px 28px rgba(59, 95, 204, 0.35));
+        }
+
+        .header-contact {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 35px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border: 3px solid var(--primary-blue);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .header-contact:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-yellow);
+        }
+
+        .contact-label {
+            display: block;
+            font-size: 15px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .header-phone {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            letter-spacing: -1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .header-phone i {
+            color: var(--accent-yellow);
+            margin-right: 5px;
+        }
+
+        .header-phone:hover {
+            color: var(--secondary-blue);
         }
 
         /* --- HEADER ACTIONS ROW --- */
@@ -214,7 +288,6 @@
         .trust-item {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 12px;
             background: rgba(255, 255, 255, 0.8);
             padding: 10px 15px;
@@ -425,6 +498,8 @@
             .repair-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
+            .header-content-wrapper { flex-direction: column; gap: 20px; }
+            .header-phone { font-size: 32px; }
             .header-actions-row { flex-direction: column; gap: 15px; }
             .search-bar { margin: 0; width: 100%; max-width: 100%; }
             .nav-list { justify-content: flex-start; overflow-x: auto; padding: 15px 20px; gap: 20px; }
@@ -444,20 +519,30 @@
         @media (max-width: 480px) {
             .hero-content h1 { font-size: 36px; }
             .trust-container { grid-template-columns: 1fr; }
-            .main-logo-img { max-width: 250px; }
+            .main-logo-img { max-width: 280px; }
+            .brand-focus-header::before { width: 300px; height: 300px; }
+            .header-phone { font-size: 26px; }
+            .header-contact { padding: 15px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="promo-bar">
-        Convert any bike you already own to electric for $450
+    <div class="top-promo-bar">
+        <i class="fa-solid fa-bolt"></i> Convert Any Bike You Own To Electric For $450!
     </div>
 
     <div class="brand-focus-header brand-pattern" id="top">
-        <a href="#top">
-            <img src="YOUR_LOGO_FILE.png" alt="E-GRIN BICYCLES Logo" class="main-logo-img">
-        </a>
+        <div class="header-content-wrapper container">
+            <a href="#top">
+                <img src="YOUR_LOGO_FILE.png" alt="E-GRIN BICYCLES Logo" class="main-logo-img">
+            </a>
+            
+            <div class="header-contact">
+                <span class="contact-label">Call or Text Us</span>
+                <a href="tel:4059011039" class="header-phone"><i class="fa-solid fa-phone-volume"></i> (405) 901-1039</a>
+            </div>
+        </div>
     </div>
 
     <header class="header-actions-row container">
@@ -489,6 +574,13 @@
 
     <section class="trust-banner brand-pattern">
         <div class="container trust-container">
+            <div class="trust-item">
+                <i class="fa-solid fa-truck-fast"></i>
+                <div class="trust-text">
+                    <h4>E-GRIN SHIPPING</h4>
+                    <p>Free on online orders</p>
+                </div>
+            </div>
             <div class="trust-item">
                 <i class="fa-solid fa-shield-halved"></i>
                 <div class="trust-text">
