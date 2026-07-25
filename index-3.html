@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-GRIN BICYCLES | Lawton's Home E-Bike Repair & Custom Conversions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-blue: #3b5fcc;
+            --secondary-blue: #2a48a3;
+            --accent-yellow: #ffc107;
+            --text-dark: #222222;
+            --text-gray: #666666;
+            --bg-light: #f8f9fa;
+            --logo-bg: #dce4ff;
+            --border-color: #e0e0e0;
+            --amazon-orange: #f90;
+            --repair-red: #d32f2f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: var(--text-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            display: inline-block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- PROMO BAR --- */
+        .top-promo-bar {
+            background-color: var(--accent-yellow);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 10px 20px;
+            font-weight: 800;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .top-promo-bar i {
+            margin-right: 8px;
+            color: var(--primary-blue);
+        }
+
+        /* --- STRATEGIC BRAND PATTERN --- */
+        .brand-pattern {
+            background-color: var(--logo-bg);
+            background-image: 
+                linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.6) 49%, rgba(255,255,255,0.6) 51%, transparent 51%),
+                linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.6) 49%, rgba(255,255,255,0.6) 51%, transparent 51%);
+            background-size: 50px 50px;
+        }
+
+        /* --- LOGO & PHONE HEADER --- */
+        .brand-focus-header {
+            width: 100%;
+            padding: 40px 20px;
+            border-bottom: 5px solid var(--accent-yellow);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .brand-focus-header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        .header-content-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .main-logo-img {
+            max-width: 380px;
+            height: auto;
+            filter: drop-shadow(0px 12px 20px rgba(0,0,0,0.25));
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .main-logo-img:hover {
+            transform: scale(1.04) translateY(-3px);
+            filter: drop-shadow(0px 16px 28px rgba(59, 95, 204, 0.35));
+        }
+
+        .header-contact {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 35px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border: 3px solid var(--primary-blue);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .header-contact:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-yellow);
+        }
+
+        .contact-label {
+            display: block;
+            font-size: 15px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .header-phone {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            letter-spacing: -1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .header-phone i {
+            color: var(--accent-yellow);
+            margin-right: 5px;
+        }
+
+        .header-phone:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* --- NAVIGATION --- */
+        .main-nav {
+            background-color: var(--primary-blue);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 0;
+            gap: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-list a {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+
+        .nav-list a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .nav-highlight {
+            color: var(--accent-yellow) !important;
+            border-bottom: 2px solid var(--accent-yellow);
+            padding-bottom: 2px;
+        }
+
+        /* --- TRUST BANNER --- */
+        .trust-banner {
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+        }
+
+        .trust-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 6px;
+            flex: 1;
+        }
+
+        .trust-item i {
+            font-size: 24px;
+            color: var(--primary-blue);
+        }
+
+        .trust-text h4 {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary-blue);
+        }
+
+        .trust-text p {
+            font-size: 12px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1542228262-3d663b306a53?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero-content h1 {
+            font-size: 54px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero-content h1 span {
+            color: var(--accent-yellow);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-blue);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-yellow);
+            color: var(--text-dark);
+        }
+        
+        .btn-accent:hover {
+            background-color: #e5a700;
+        }
+
+        /* --- PRODUCT LIST STYLES (kept fully intact for affiliate section) --- */
+        .generic-section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 0 10px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i { color: var(--primary-blue); }
+        .section-title.amazon i { color: var(--amazon-orange); }
+
+        .generic-section > p {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .product-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px;
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--primary-blue);
+            border-radius: 8px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .product-list-item:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transform: translateX(3px);
+        }
+
+        .product-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-brand {
+            font-size: 12px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .product-rating {
+            color: var(--accent-yellow);
+            font-size: 14px;
+        }
+
+        .product-rating span {
+            color: var(--text-gray);
+            margin-left: 8px;
+            font-size: 13px;
+        }
+
+        .product-price {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-dark);
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+
+        /* --- REPAIR SERVICES --- */
+        .repair-section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .repair-header { text-align: center; max-width: 800px; margin: 0 auto 50px; position: relative; z-index: 2; }
+        .repair-header h2 { font-size: 34px; color: var(--primary-blue); margin-bottom: 15px; text-transform: uppercase; }
+        .repair-header h2 span { color: var(--text-dark); }
+        .repair-header p { font-size: 16px; color: var(--text-dark); font-weight: 500; line-height: 1.6; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 8px;}
+        .repair-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; position: relative; z-index: 2; }
+        
+        .repair-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--primary-blue);
+            border-bottom: 4px solid var(--accent-yellow);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+        .repair-card i { font-size: 40px; color: var(--primary-blue); margin-bottom: 20px; }
+        .repair-card h3 { font-size: 18px; margin-bottom: 10px; color: var(--text-dark); font-weight: 800;}
+        .repair-card p { font-size: 14px; color: var(--text-gray); margin-bottom: 20px; line-height: 1.5; }
+        .btn-outline { background-color: transparent; border: 2px solid var(--primary-blue); color: var(--primary-blue); width: 100%; padding: 10px; border-radius: 4px; font-weight: bold;}
+        .btn-outline:hover { background-color: var(--primary-blue); color: #fff;}
+
+        .affiliate-note {
+            font-size: 14px;
+            color: var(--text-gray);
+            font-style: italic;
+            margin-top: 30px;
+            padding: 18px 20px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 5px solid var(--primary-blue);
+            line-height: 1.5;
+        }
+
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 1024px) {
+            .repair-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .header-content-wrapper { flex-direction: column; gap: 20px; }
+            .header-phone { font-size: 32px; }
+            .nav-list { justify-content: flex-start; overflow-x: auto; padding: 15px 20px; gap: 20px; }
+            .trust-container { display: grid; grid-template-columns: repeat(2, 1fr); }
+            .repair-grid { grid-template-columns: 1fr; }
+            
+            .product-list-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .product-price {
+                margin-left: 0;
+                align-self: flex-start;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 36px; }
+            .trust-container { grid-template-columns: 1fr; }
+            .main-logo-img { max-width: 280px; }
+            .brand-focus-header::before { width: 300px; height: 300px; }
+            .header-phone { font-size: 26px; }
+            .header-contact { padding: 15px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-promo-bar">
+        <i class="fa-solid fa-bolt"></i> Convert Any Bike You Own To Electric — Flat Fee Service Available!
+    </div>
+
+    <div class="brand-focus-header brand-pattern" id="top">
+        <div class="header-content-wrapper container">
+            <a href="#top">
+                <img src="YOUR_LOGO_FILE.png" alt="E-GRIN BICYCLES Logo" class="main-logo-img">
+            </a>
+            
+            <div class="header-contact">
+                <span class="contact-label">Call or Text Us</span>
+                <a href="tel:4059011039" class="header-phone"><i class="fa-solid fa-phone-volume"></i> (405) 901-1039</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#services">SERVICES</a></li>
+                <li><a href="#conversions">CONVERSIONS</a></li>
+                <li><a href="#battery">BATTERY SERVICE</a></li>
+                <li><a href="#recommended" class="nav-highlight"><i class="fa-solid fa-tag"></i> RECOMMENDED GEAR</a></li>
+                <li><a href="tel:4059011039"><i class="fa-solid fa-bolt"></i> BOOK REPAIR</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="trust-banner brand-pattern">
+        <div class="container trust-container">
+            <div class="trust-item">
+                <i class="fa-solid fa-house-chimney"></i>
+                <div class="trust-text">
+                    <h4>HOME WORKSHOP</h4>
+                    <p>Low overhead = lower rates</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div class="trust-text">
+                    <h4>IN-HOUSE EXPERTISE</h4>
+                    <p>Hub motors, mid-drives & batteries</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <div class="trust-text">
+                    <h4>LAWTON, OK</h4>
+                    <p>Serving SW Oklahoma & Fort Sill</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Welcome to <span>E-GRIN BICYCLES</span></h1>
+                <p>Lawton’s dedicated home-based e-bike repair & custom conversion service. You don’t need an expensive retail showroom to get pro-grade mechanics. Operating from my home workshop, I keep overhead low so the savings go directly to you.</p>
+                <div class="hero-buttons">
+                    <a href="tel:4059011039" class="btn btn-primary">CALL OR TEXT (405) 901-1039</a>
+                    <a href="#services" class="btn btn-accent"><i class="fa-solid fa-wrench"></i> VIEW SERVICES</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="repair-section brand-pattern">
+        <div class="container">
+            <div class="repair-header">
+                <h2>Expert E-Bike Services <span>From My Home Workshop</span></h2>
+                <p>From SW Oklahoma to the Wichita Mountains, I handle complex diagnostics, assemblies, and custom builds with personalized, one-on-one attention. Most traditional bike shops won’t touch hub motors, mid-drives, or custom lithium batteries — I do.</p>
+            </div>
+
+            <div class="repair-grid">
+                <div class="repair-card" id="conversions">
+                    <i class="fa-solid fa-bicycle"></i>
+                    <h3>Custom E-Bike Conversions</h3>
+                    <p>Convert any traditional bicycle you already own into a high-powered electric ride for a flat fee. Bring your bike and your kit, or let me recommend the exact parts you need to order.</p>
+                    <a href="tel:4059011039" class="btn btn-outline">Call to Schedule</a>
+                </div>
+                
+                <div class="repair-card" id="battery">
+                    <i class="fa-solid fa-car-battery"></i>
+                    <h3>Battery Diagnostics & Service</h3>
+                    <p>Experiencing voltage sag or range loss? I test lithium-ion cell health, replace faulty BMS units, and handle custom wiring safely right here in the workshop.</p>
+                    <a href="tel:4059011039" class="btn btn-outline">Call to Schedule</a>
+                </div>
+
+                <div class="repair-card">
+                    <i class="fa-solid fa-gear"></i>
+                    <h3>Motor & Controller Tuning</h3>
+                    <p>Stripped gears or electrical faults? I diagnose, repair, and program smart controllers (hub motors and mid-drives) to get your power back to 100%.</p>
+                    <a href="tel:4059011039" class="btn btn-outline">Call to Schedule</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; max-width: 480px; margin-left: auto; margin-right: auto;">
+                <div class="repair-card">
+                    <i class="fa-solid fa-box-open"></i>
+                    <h3>Routine Maintenance & Box Assembly</h3>
+                    <p>Heavy e-bikes wear components quickly. Bring your bike for hydraulic brake bleeds, tire/tube swaps, or adjustments. Just ordered a Lectric, Aventon, or Rad online? I’ll professionally unbox and assemble it so it’s ready to ride.</p>
+                    <a href="tel:4059011039" class="btn btn-outline">Call to Schedule</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recommended" class="generic-section container" style="margin-bottom: 100px;">
+        <h2 class="section-title amazon"><i class="fa-solid fa-tag"></i> Recommended Gear & DIY Parts</h2>
+        <p>Looking for the best conversion kits, batteries, locks, and components? These are the exact categories I recommend to local clients. When you need a specific part, text me and I’ll send the verified link so you get the correct voltage, size, and model the first time.</p>
+
+        <div class="product-list">
+            <div class="product-list-item">
+                <div class="product-details">
+                    <p class="product-brand">Conversion Kits</p>
+                    <h3 class="product-title">Bafang Mid-Drives, Tongsheng Torque-Sensor Kits & Hub Motors</h3>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        <span>Tell me your bike type — I’ll send the right kit link</span>
+                    </div>
+                </div>
+                <div class="product-price" style="font-size: 16px; color: var(--primary-blue);">Text for Link</div>
+            </div>
+
+            <div class="product-list-item">
+                <div class="product-details">
+                    <p class="product-brand">Batteries & Chargers</p>
+                    <h3 class="product-title">High-Discharge Hailong Packs & Quality Chargers</h3>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span>Wrong voltage or BMS is a common expensive mistake</span>
+                    </div>
+                </div>
+                <div class="product-price" style="font-size: 16px; color: var(--primary-blue);">Text for Link</div>
+            </div>
+
+            <div class="product-list-item">
+                <div class="product-details">
+                    <p class="product-brand">Locks & Security</p>
+                    <h3 class="product-title">Heavy-Duty U-Locks & Cables That Actually Protect E-Bikes</h3>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        <span>Lightweight big-box locks are easy targets</span>
+                    </div>
+                </div>
+                <div class="product-price" style="font-size: 16px; color: var(--primary-blue);">Text for Link</div>
+            </div>
+
+            <div class="product-list-item">
+                <div class="product-details">
+                    <p class="product-brand">Lights, Tires & Wear Items</p>
+                    <h3 class="product-title">High-Lumen Lights, Fat Tires, Tubes & Brake Pads</h3>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span>E-bikes go through consumables faster than regular bikes</span>
+                    </div>
+                </div>
+                <div class="product-price" style="font-size: 16px; color: var(--primary-blue);">Text for Link</div>
+            </div>
+        </div>
+
+        <div class="affiliate-note">
+            <strong>How it works:</strong> When a local client needs a part, I text the exact verified product link. You get the right item; I earn a small affiliate commission that helps keep my repair rates low. No pressure, no inventory sitting on shelves — just honest recommendations from someone who works on these systems every day. Call or text <strong>(405) 901-1039</strong>.
+        </div>
+    </section>
+
+</body>
+</html>
